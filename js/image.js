@@ -15,16 +15,16 @@ fileInput.addEventListener("change", (event) => handleFile(event.target.files[0]
 // Drag & drop support
 previewContainer.addEventListener("dragover", (e) => {
   e.preventDefault();
-  previewContainer.classList.add("border-blue-400");
+  previewContainer.classList.add("border-blue-400", "bg-blue-50");
 });
 
 previewContainer.addEventListener("dragleave", () => {
-  previewContainer.classList.remove("border-blue-400");
+  previewContainer.classList.remove("border-blue-400", "bg-blue-50");
 });
 
 previewContainer.addEventListener("drop", (e) => {
   e.preventDefault();
-  previewContainer.classList.remove("border-blue-400");
+  previewContainer.classList.remove("border-blue-400", "bg-blue-50");
 
   const file = e.dataTransfer.files[0];
   handleFile(file);
@@ -40,7 +40,11 @@ function handleFile(file) {
     return;
   }
 
-  selectedFileName.textContent = file.name;
+  selectedFile = file;
+
+  // Display file name + size
+  const fileSizeMB = (file.size / 1024 / 1024).toFixed(2);
+  selectedFileName.textContent = `${file.name} – ${fileSizeMB} MB`;
 
   const img = new Image();
   const reader = new FileReader();
@@ -48,7 +52,6 @@ function handleFile(file) {
   reader.onload = (e) => {
     img.src = e.target.result;
     img.onload = () => {
-      selectedFile = img;
       previewContainer.innerHTML = ""; // Clear upload text
       previewContainer.appendChild(img);
       img.style.maxWidth = "100%";
@@ -70,41 +73,51 @@ convertBtn.addEventListener("click", () => {
   const format = document.querySelector('input[name="format"]:checked').value;
 
   const canvas = document.createElement("canvas");
-  canvas.width = selectedFile.naturalWidth;
-  canvas.height = selectedFile.naturalHeight;
+  const imgElement = new Image();
 
-  const ctx = canvas.getContext("2d");
-  ctx.drawImage(selectedFile, 0, 0);
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    imgElement.src = e.target.result;
+    imgElement.onload = () => {
+      canvas.width = imgElement.naturalWidth;
+      canvas.height = imgElement.naturalHeight;
 
-  let mimeType;
-  let extension;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(imgElement, 0, 0);
 
-  switch (format) {
-    case "jpg":
-      mimeType = "image/jpeg";
-      extension = "jpg";
-      break;
-    case "png":
-      mimeType = "image/png";
-      extension = "png";
-      break;
-    case "webp":
-      mimeType = "image/webp";
-      extension = "webp";
-      break;
-    default:
-      alert("Unsupported format selected.");
-      return;
-  }
+      let mimeType;
+      let extension;
 
-  canvas.toBlob((blob) => {
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `converted.${extension}`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  }, mimeType);
+      switch (format) {
+        case "jpg":
+          mimeType = "image/jpeg";
+          extension = "jpg";
+          break;
+        case "png":
+          mimeType = "image/png";
+          extension = "png";
+          break;
+        case "webp":
+          mimeType = "image/webp";
+          extension = "webp";
+          break;
+        default:
+          alert("Unsupported format selected.");
+          return;
+      }
+
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `converted.${extension}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }, mimeType);
+    };
+  };
+
+  reader.readAsDataURL(selectedFile);
 });

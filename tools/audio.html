@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online audio converter. Convert WAV or AIFF files to MP3 or M4A in your browser with no uploads or watermarks." />
+  <title>Free Audio Converter – Convert WAV or AIFF to MP3 or M4A</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://free-conversion-tool.netlify.app/tools/audio.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Audio Converter – Convert WAV or AIFF to MP3 or M4A" />
+  <meta property="og:description" content="Convert audio instantly in your browser. 100% free, private, and offline." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://free-conversion-tool.netlify.app/tools/audio.html" />
+  <meta property="og:image" content="https://free-conversion-tool.netlify.app/og-audio.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Audio Converter – Convert WAV or AIFF to MP3 or M4A" />
+  <meta name="twitter:description" content="Browser-based WAV and AIFF to MP3 or M4A converter. Fast and private." />
+  <meta name="twitter:image" content="https://free-conversion-tool.netlify.app/og-audio.jpg" />
+
+  <!-- Google Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2448091936586496" crossorigin="anonymous"></script>
+
+  <!-- Fonts and Tailwind -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-slate-100 to-white min-h-screen text-gray-800 font-['Roboto'] flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="w-full bg-white shadow-sm px-6 py-3 flex justify-between items-center">
+    <h1 class="text-lg font-semibold text-gray-700">Free Conversion Tool</h1>
+    <select id="toolSelector" class="border border-gray-300 rounded px-2 py-1 text-sm">
+      <option value="/">Image Converter</option>
+      <option value="/tools/audio.html" selected>Audio Converter</option>
+    </select>
+  </nav>
+
+  <header class="text-center mt-8">
+    <h2 class="text-3xl font-bold mb-2">Audio Converter</h2>
+    <p class="text-lg text-gray-600 mb-5">Convert WAV or AIFF to MP3 or M4A – free and private.</p>
+  </header>
+
+  <main class="flex flex-col items-center justify-center flex-grow px-4">
+    <div
+      id="audioUploadZone"
+      class="upload-zone w-full max-w-xl p-6 border-2 border-dashed border-gray-300 rounded-2xl bg-white shadow-md transition hover:shadow-lg text-center cursor-pointer"
+    >
+      <p class="text-gray-600 text-base mb-2">Drag & drop your audio file here</p>
+      <p class="text-sm text-gray-400">or</p>
+      <button
+        id="selectAudioButton"
+        class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition"
+      >
+        Choose an Audio File
+      </button>
+      <input
+        type="file"
+        id="audioFileInput"
+        accept=".wav,.aiff,.aif"
+        class="hidden"
+      />
+      <span id="selectedAudioName" class="block mt-2 text-sm text-gray-500"></span>
+    </div>
+
+    <div class="format-toggle mt-6 text-center space-x-4">
+      <label class="text-gray-700"><input type="radio" name="audioFormat" value="mp3" checked /> MP3</label>
+      <label class="text-gray-700"><input type="radio" name="audioFormat" value="m4a" /> M4A</label>
+    </div>
+
+    <button
+      id="convertAudioBtn"
+      class="mt-6 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-xl transition"
+    >
+      Convert & Download
+    </button>
+  </main>
+
+  <section class="max-w-2xl mx-auto px-4 mt-12 text-center text-base text-gray-700">
+    <h3 class="text-2xl font-semibold mb-3">Free Online Audio Converter</h3>
+    <p>Convert <strong>WAV</strong> or <strong>AIFF</strong> files into <strong>MP3</strong> or <strong>M4A</strong> directly in your browser.</p>
+    <p class="mt-2">No uploads, no watermarks — just fast, private, and free conversion.</p>
+  </section>
+
+  <footer class="w-full mt-16 border-t pt-6 pb-8 px-4 text-center text-sm text-gray-500">
+    <p>&copy; 2025 Free Conversion Tool. All rights reserved.</p>
+    <div class="mt-2">
+      <a href="/#privacy-policy" class="text-blue-600 hover:underline">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <script src="/js/shared.js"></script>
+  <script src="/js/audio.js"></script>
+</body>
+</html>

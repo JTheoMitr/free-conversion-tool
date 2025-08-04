@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Convert WebP, JPG, and PNG images instantly in your browser. Free, private, and fast image converter." />
+  <title>Image Converter – Free Conversion Tool</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://free-conversion-tool.netlify.app/tools/image.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Image Converter – Free Conversion Tool" />
+  <meta property="og:description" content="Convert WebP, JPG, and PNG instantly in your browser. 100% free, secure, and private." />
+  <meta property="og:image" content="https://free-conversion-tool.netlify.app/og-image.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Image Converter – Free Conversion Tool" />
+  <meta name="twitter:description" content="Convert images (WebP, JPG, PNG) easily, free, and directly in your browser." />
+  <meta name="twitter:image" content="https://free-conversion-tool.netlify.app/og-image.jpg" />
+
+  <!-- Google Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2448091936586496" crossorigin="anonymous"></script>
+
+  <!-- Roboto Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-100 to-white min-h-screen flex flex-col font-['Roboto'] text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="w-full bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <a href="/" class="text-xl font-bold text-blue-600">Free Conversion Tool</a>
+    <div>
+      <select id="toolSelector" class="border rounded-lg px-3 py-1 text-gray-700">
+        <option value="/">Select a Tool</option>
+        <option value="/tools/image.html" selected>Image Converter</option>
+        <option value="/tools/audio.html">Audio Converter</option>
+        <option value="/tools/pdf.html">PDF Converter</option>
+      </select>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="text-center mt-8">
+    <h1 class="text-3xl font-bold mb-2">Image Converter</h1>
+    <p class="text-lg text-gray-600 mb-5">Convert WebP, JPG, and PNG images instantly in your browser – free and private.</p>
+  </header>
+
+  <!-- Main Converter -->
+  <main class="flex flex-col items-center justify-center flex-grow px-4">
+    <div
+      id="previewContainer"
+      class="upload-zone w-full max-w-xl p-6 border-2 border-dashed border-gray-300 rounded-2xl bg-white shadow-md transition hover:shadow-lg text-center cursor-pointer"
+    >
+      <p class="text-gray-600 text-base mb-2">Drag & drop your image here</p>
+      <p class="text-sm text-gray-400">or</p>
+      <button
+        id="selectFileButton"
+        class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition"
+      >
+        Choose an Image
+      </button>
+      <input
+        type="file"
+        id="fileInput"
+        accept=".webp,.png,.jpg,.jpeg"
+        class="hidden"
+      />
+      <span id="selectedFileName" class="block mt-2 text-sm text-gray-500"></span>
+    </div>
+
+    <div class="format-toggle mt-6 text-center space-x-4">
+      <label class="text-gray-700"><input type="radio" name="format" value="jpg" checked /> JPG</label>
+      <label class="text-gray-700"><input type="radio" name="format" value="png" /> PNG</label>
+      <label class="text-gray-700"><input type="radio" name="format" value="webp" /> WEBP</label>
+    </div>
+
+    <button
+      id="convertBtn"
+      class="mt-6 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-xl transition"
+    >
+      Convert & Download
+    </button>
+  </main>
+
+  <!-- SEO Content -->
+  <section class="max-w-2xl mx-auto px-4 mt-12 text-center text-base text-gray-700">
+    <h2 class="text-2xl font-semibold mb-3">Free Online Image Converter</h2>
+    <p>Convert images to <strong>JPG</strong>, <strong>PNG</strong>, or <strong>WebP</strong> in your browser. No uploads, no watermarks, and no hassle.</p>
+    <p class="mt-2">Whether you're a developer, student, or content creator, this tool is designed for fast, secure, and private image conversion.</p>
+    <p class="text-sm mt-4 text-gray-600">Simple, lightweight, and free to use.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="w-full mt-16 border-t pt-6 pb-8 px-4 text-center text-sm text-gray-500">
+    <p>&copy; 2025 Free Conversion Tool. All rights reserved.</p>
+    <div class="mt-2">
+      <a href="#privacy-policy" class="text-blue-600 hover:underline">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <!-- Privacy Policy -->
+  <section id="privacy-policy" class="max-w-2xl mx-auto mt-12 px-4">
+    <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-md p-6 text-center">
+      <h2 class="text-xl font-semibold mb-2">Privacy Policy</h2>
+      <p class="mb-2">This tool is 100% client-side. Your images are never uploaded—we don’t store or share your files.</p>
+      <p class="mb-2">We use Google Analytics to understand basic usage patterns, and AdSense for light, non-intrusive ads. These may use cookies as per their policies.</p>
+      <p class="mb-2">By using this tool, you agree to these terms.</p>
+    </div>
+  </section>
+
+  <script src="/js/shared.js"></script>
+  <script src="/js/image.js"></script>
+</body>
+</html>

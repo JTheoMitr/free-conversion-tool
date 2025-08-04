@@ -2,10 +2,11 @@ import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 const audioFileInput = document.getElementById("audioFileInput");
 const selectAudioButton = document.getElementById("selectAudioButton");
-const selectedAudioFileName = document.getElementById("selectedAudioFileName");
+const selectedAudioName = document.getElementById("selectedAudioName");
 const convertAudioBtn = document.getElementById("convertAudioBtn");
-const spinner = document.getElementById("spinner");
-const spinnerText = document.getElementById("spinnerText");
+
+const spinner = document.getElementById("loadingSpinner");
+const spinnerText = document.getElementById("loadingText");
 
 const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
@@ -24,14 +25,14 @@ audioFileInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (!file) return;
 
-  const allowedTypes = ["audio/aiff", "audio/wav", "audio/mpeg", "audio/mp4", "audio/x-m4a"];
+  const allowedTypes = ["audio/aiff", "audio/x-aiff", "audio/wav", "audio/mpeg", "audio/mp4", "audio/x-m4a"];
   if (!allowedTypes.includes(file.type)) {
     alert("Please select a valid audio file (AIFF, WAV, MP3, M4A).");
     return;
   }
 
   selectedAudioFile = file;
-  selectedAudioFileName.textContent = file.name;
+  selectedAudioName.textContent = file.name;
 });
 
 // Initialize FFmpeg
@@ -47,7 +48,7 @@ async function loadFFmpeg() {
         if (match) {
           const [h, m, s] = match[1].split(":").map(parseFloat);
           const currentTime = h * 3600 + m * 60 + s;
-          const duration = selectedAudioFile?.duration || 60; // fallback 60s
+          const duration = selectedAudioFile?.duration || 60;
           const progress = Math.min(100, Math.round((currentTime / duration) * 100));
           updateProgress(progress);
         }
@@ -85,7 +86,7 @@ function getAudioDuration(file) {
     const audio = document.createElement("audio");
     audio.src = URL.createObjectURL(file);
     audio.addEventListener("loadedmetadata", () => {
-      resolve(audio.duration || 60); // fallback 60s
+      resolve(audio.duration || 60);
     });
   });
 }

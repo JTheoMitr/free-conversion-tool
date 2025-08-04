@@ -12,6 +12,8 @@ const progressContainer = document.getElementById("progressContainer");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
 
+const uploadZone = document.getElementById("audioUploadZone");
+
 let selectedAudioFile = null;
 let ffmpeg = null;
 
@@ -23,8 +25,29 @@ selectAudioButton.addEventListener("click", () => {
 // Handle file selection
 audioFileInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
-  if (!file) return;
+  if (file) handleFileSelection(file);
+});
 
+// Drag and drop events
+uploadZone.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  uploadZone.classList.add("border-blue-400", "bg-blue-50");
+});
+
+uploadZone.addEventListener("dragleave", () => {
+  uploadZone.classList.remove("border-blue-400", "bg-blue-50");
+});
+
+uploadZone.addEventListener("drop", (e) => {
+  e.preventDefault();
+  uploadZone.classList.remove("border-blue-400", "bg-blue-50");
+
+  const file = e.dataTransfer.files[0];
+  if (file) handleFileSelection(file);
+});
+
+// Handle file validation and display
+function handleFileSelection(file) {
   const allowedTypes = ["audio/aiff", "audio/x-aiff", "audio/wav", "audio/mpeg", "audio/mp4", "audio/x-m4a"];
   if (!allowedTypes.includes(file.type)) {
     alert("Please select a valid audio file (AIFF, WAV, MP3, M4A).");
@@ -33,7 +56,7 @@ audioFileInput.addEventListener("change", (event) => {
 
   selectedAudioFile = file;
   selectedAudioName.textContent = file.name;
-});
+}
 
 // Initialize FFmpeg
 async function loadFFmpeg() {
@@ -41,7 +64,6 @@ async function loadFFmpeg() {
     ffmpeg = createFFmpeg({ log: true });
     await ffmpeg.load();
 
-    // Hook into ffmpeg log for progress tracking
     ffmpeg.setLogger(({ type, message }) => {
       if (type === "fferr" && message.includes("time=")) {
         const match = message.match(/time=(\d+:\d+:\d+\.\d+)/);
@@ -109,7 +131,6 @@ convertAudioBtn.addEventListener("click", async () => {
 
   ffmpeg.FS("writeFile", inputName, await fetchFile(selectedAudioFile));
 
-  // Estimate duration for progress
   selectedAudioFile.duration = await getAudioDuration(selectedAudioFile);
 
   if (format === "mp3") {

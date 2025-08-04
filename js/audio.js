@@ -5,6 +5,20 @@ const convertAudioBtn = document.getElementById("convertAudioBtn");
 const audioUploadZone = document.getElementById("audioUploadZone");
 
 let selectedAudioFile = null;
+let ffmpegLoaded = false;
+
+// Load ffmpeg
+const { createFFmpeg } = FFmpeg;
+const ffmpeg = createFFmpeg({ log: true });
+
+async function loadFFmpeg() {
+  if (!ffmpegLoaded) {
+    console.log("Loading FFmpeg...");
+    await ffmpeg.load();
+    ffmpegLoaded = true;
+    console.log("FFmpeg loaded successfully.");
+  }
+}
 
 // Trigger file input
 selectAudioButton.addEventListener("click", () => audioFileInput.click());
@@ -51,7 +65,34 @@ convertAudioBtn.addEventListener("click", async () => {
 
   const format = document.querySelector('input[name="audioFormat"]:checked').value;
 
-  alert(`Conversion to ${format.toUpperCase()} will be handled in the next step using ffmpeg.wasm.`);
+  await loadFFmpeg();
 
-  // Placeholder for ffmpeg conversion (to be implemented next)
+  const inputName = "input." + selectedAudioFile.name.split(".").pop();
+  const outputName = `output.${format}`;
+
+  // Write file to memory
+  ffmpeg.FS("writeFile", inputName, await fetchFile(selectedAudioFile));
+
+  // Convert
+  if (format === "mp3") {
+    await ffmpeg.run("-i", inputName, "-q:a", "2", outputName);
+  } else if (format === "m4a") {
+    await ffmpeg.run("-i", inputName, "-c:a", "aac", "-b:a", "192k", outputName);
+  }
+
+  // Read file from memory
+  const data = ffmpeg.FS("readFile", outputName);
+
+  // Create download link
+  const url = URL.createObjectURL(new Blob([data.buffer], { type: `audio/${format}` }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `converted.${format}`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  // Cleanup
+  ffmpeg.FS("unlink", inputName);
+  ffmpeg.FS("unlink", outputName);
 });

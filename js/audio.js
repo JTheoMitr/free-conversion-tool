@@ -55,7 +55,8 @@ function handleFileSelection(file) {
   }
 
   selectedAudioFile = file;
-  selectedAudioName.textContent = file.name;
+  const fileSizeMB = (file.size / 1024 / 1024).toFixed(2); // Size in MB
+  selectedAudioName.textContent = `${file.name} – ${fileSizeMB} MB`;
 }
 
 // Initialize FFmpeg

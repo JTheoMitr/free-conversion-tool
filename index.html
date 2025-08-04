@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online file converter – convert images, audio, and more instantly in your browser. Fast, secure, and private." />
+  <title>Free Conversion Tool – Convert Images, Audio & More</title>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://free-conversion-tool.netlify.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Conversion Tool – Convert Images, Audio & More" />
+  <meta property="og:description" content="Fast, private, browser-based conversion for images, audio, and more." />
+  <meta property="og:image" content="https://free-conversion-tool.netlify.app/og-image.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Conversion Tool – Convert Images, Audio & More" />
+  <meta name="twitter:description" content="Free, browser-based file conversion with no uploads or watermarks." />
+  <meta name="twitter:image" content="https://free-conversion-tool.netlify.app/og-image.jpg" />
+
+  <!-- Google Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2448091936586496" crossorigin="anonymous"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-100 to-white min-h-screen flex flex-col font-['Roboto'] text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="w-full bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <a href="/" class="text-xl font-bold text-blue-600">Free Conversion Tool</a>
+    <div>
+      <select id="toolSelector" class="border rounded-lg px-3 py-1 text-gray-700">
+        <option value="/">Select a Tool</option>
+        <option value="/tools/image.html">Image Converter</option>
+        <option value="/tools/audio.html">Audio Converter</option>
+        <option value="/tools/pdf.html">PDF Converter</option>
+      </select>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="text-center mt-12">
+    <h1 class="text-3xl font-bold mb-2">Free Online File Converter</h1>
+    <p class="text-lg text-gray-600 mb-8">Convert images, audio, and more – fast, secure, and 100% browser-based.</p>
+  </header>
+
+  <!-- Tools Cards -->
+  <main class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto">
+    <!-- Image Tool -->
+    <div class="bg-white shadow-md rounded-2xl p-6 text-center">
+      <img src="https://img.icons8.com/color/96/image.png" class="mx-auto mb-4" alt="Image Converter" />
+      <h2 class="text-xl font-semibold mb-2">Image Converter</h2>
+      <p class="text-gray-600 mb-4">Convert WebP, JPG, and PNG instantly in your browser.</p>
+      <a href="/tools/image.html" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg inline-block">Open Tool</a>
+    </div>
+
+    <!-- Audio Tool -->
+    <div class="bg-white shadow-md rounded-2xl p-6 text-center">
+      <img src="https://img.icons8.com/color/96/musical-notes.png" class="mx-auto mb-4" alt="Audio Converter" />
+      <h2 class="text-xl font-semibold mb-2">Audio Converter</h2>
+      <p class="text-gray-600 mb-4">Convert WAV or AIFF to MP3 or M4A quickly and easily.</p>
+      <a href="/tools/audio.html" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg inline-block">Open Tool</a>
+    </div>
+
+    <!-- PDF Tool -->
+    <div class="bg-white shadow-md rounded-2xl p-6 text-center">
+      <img src="https://img.icons8.com/color/96/pdf.png" class="mx-auto mb-4" alt="PDF Converter" />
+      <h2 class="text-xl font-semibold mb-2">PDF Converter</h2>
+      <p class="text-gray-600 mb-4">Merge or convert PDFs (coming soon).</p>
+      <a href="/tools/pdf.html" class="bg-gray-400 text-white px-4 py-2 rounded-lg inline-block cursor-not-allowed">Coming Soon</a>
+    </div>
+  </main>
+
+  <!-- About & SEO Section -->
+  <section class="max-w-4xl mx-auto mt-12 px-4 text-center">
+    <h2 class="text-2xl font-semibold mb-3">Why Choose Free Conversion Tool?</h2>
+    <p class="text-gray-700 mb-4">Our converters run directly in your browser, meaning your files never leave your device. No uploads, no watermarks, and no cost.</p>
+    <h3 class="text-xl font-semibold mt-6 mb-2">Supported Formats</h3>
+    <p class="text-gray-600">Images: WebP, JPG, PNG | Audio: WAV, AIFF, MP3, M4A | PDFs: Coming Soon</p>
+    <h3 class="text-xl font-semibold mt-6 mb-2">FAQ</h3>
+    <p class="text-gray-600 mb-2"><strong>Is it free?</strong> Yes, all tools are 100% free to use.</p>
+    <p class="text-gray-600 mb-2"><strong>Are my files uploaded?</strong> No. Everything happens in your browser.</p>
+    <p class="text-gray-600 mb-2"><strong>Can I use it on mobile?</strong> Yes, our tools are fully mobile-friendly.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="w-full mt-16 border-t pt-6 pb-8 px-4 text-center text-sm text-gray-500">
+    <p>&copy; 2025 Free Conversion Tool. All rights reserved.</p>
+    <div class="mt-2">
+      <a href="#privacy-policy" class="text-blue-600 hover:underline">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <!-- Privacy Policy -->
+  <section id="privacy-policy" class="max-w-2xl mx-auto mt-12 px-4">
+    <div class="bg-white/80 backdrop-blur-md rounded-2xl shadow-md p-6 text-center">
+      <h2 class="text-xl font-semibold mb-2">Privacy Policy</h2>
+      <p class="mb-2">This tool is 100% client-side. Your files are never uploaded—we don’t store or share your data.</p>
+      <p class="mb-2">We use Google Analytics to understand basic usage, and AdSense for non-intrusive ads. These may use cookies as per their policies.</p>
+    </div>
+  </section>
+
+  <script src="/js/shared.js"></script>
+</body>
+</html>
